@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slicezee - Fresh Vegetables Delivered in Minutes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2>🥬 Slicezee</h2>
+                </div>
+                
+                <nav class="nav desktop-nav">
+                    <a href="#" onclick="showPage('home')" class="nav-link active">Home</a>
+                    <a href="#" onclick="showPage('shop')" class="nav-link">Shop</a>
+                    <a href="#" onclick="showPage('why-slicezee')" class="nav-link">Why Slicezee</a>
+                    <a href="#" onclick="showPage('about')" class="nav-link">About Us</a>
+                    <a href="#" onclick="showPage('contact')" class="nav-link">Contact</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="Search for vegetables..." class="form-control">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <button onclick="showPage('cart')" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button onclick="showPage('account')" class="account-btn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav hidden" id="mobileNav">
+            <a href="#" onclick="showPage('home')" class="nav-link">Home</a>
+            <a href="#" onclick="showPage('shop')" class="nav-link">Shop</a>
+            <a href="#" onclick="showPage('why-slicezee')" class="nav-link">Why Slicezee</a>
+            <a href="#" onclick="showPage('about')" class="nav-link">About Us</a>
+            <a href="#" onclick="showPage('contact')" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Fresh Vegetables Delivered in Minutes</h1>
+                        <p>Get farm-fresh vegetables delivered to your doorstep in just 10-15 minutes!</p>
+                        <div class="hero-search">
+                            <input type="text" placeholder="Search for vegetables..." class="form-control">
+                            <button class="btn btn--primary">Search</button>
+                        </div>
+                        <div class="delivery-info">
+                            <span><i class="fas fa-clock"></i> 10-15 min delivery</span>
+                            <span><i class="fas fa-leaf"></i> Farm fresh quality</span>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1755486692/pplx_project_search_images/121b22aa38f4aff0921ca8c8dad7dd363b3e1ea0.png" alt="Fresh Vegetables" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories">
+            <div class="container">
+                <h2>Shop by Category</h2>
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Products -->
+        <section class="popular-products">
+            <div class="container">
+                <h2>Popular Products</h2>
+                <div class="products-grid" id="popularProducts">
+                    <!-- Popular products will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits">
+            <div class="container">
+                <h2>Why Choose Slicezee?</h2>
+                <div class="benefits-grid" id="benefitsGrid">
+                    <!-- Benefits will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid" id="statsGrid">
+                    <!-- Stats will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="container">
+                <h2>What Our Customers Say</h2>
+                <div class="testimonials-grid" id="testimonialsGrid">
+                    <!-- Testimonials will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Shop Page -->
+    <div id="shop" class="page hidden">
+        <div class="container">
+            <div class="shop-header">
+                <h1>Shop Fresh Vegetables</h1>
+                <div class="shop-controls">
+                    <select id="categoryFilter" class="form-control">
+                        <option value="">All Categories</option>
+                    </select>
+                    <select id="sortSelect" class="form-control">
+                        <option value="name">Sort by Name</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+            <div class="shop-content">
+                <div class="products-grid" id="shopProducts">
+                    <!-- Products will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Slicezee Page -->
+    <div id="why-slicezee" class="page hidden">
+        <div class="container">
+            <div class="page-hero">
+                <h1>Why Choose Slicezee?</h1>
+                <p>Discover what makes us the best choice for fresh vegetables</p>
+            </div>
+            
+            <section class="why-benefits">
+                <div class="benefits-grid large" id="whyBenefitsGrid">
+                    <!-- Benefits will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <section class="how-it-works">
+                <h2>How It Works</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-icon">1</div>
+                        <h3>Browse & Select</h3>
+                        <p>Choose from our wide selection of fresh vegetables</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">2</div>
+                        <h3>Add to Cart</h3>
+                        <p>Add your favorite items to cart with desired quantities</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">3</div>
+                        <h3>Fast Delivery</h3>
+                        <p>Get your order delivered in just 10-15 minutes</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="why-stats">
+                <div class="stats-grid large" id="whyStatsGrid">
+                    <!-- Stats will be populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="page hidden">
+        <div class="container">
+            <div class="page-hero">
+                <h1>About Slicezee</h1>
+                <p>Your trusted partner for fresh, quality vegetables</p>
+            </div>
+            
+            <section class="about-story">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Our Story</h2>
+                        <p>Slicezee was founded with a simple mission: to bring farm-fresh vegetables to your doorstep within minutes. We believe that everyone deserves access to high-quality, fresh produce without the hassle of traditional grocery shopping.</p>
+                        <p>Our team works directly with local farmers and suppliers to ensure that every vegetable meets our strict quality standards. From the moment an order is placed to its delivery, we maintain the cold chain to preserve freshness and nutritional value.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1755486692/pplx_project_search_images/a165673db072e90be616600f2303d6e5b17d992e.png" alt="Fresh Vegetables Display" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="values">
+                <h2>Our Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Freshness First</h3>
+                        <p>We source directly from farms to ensure maximum freshness</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Customer Care</h3>
+                        <p>Your satisfaction is our top priority</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-seedling"></i>
+                        <h3>Sustainability</h3>
+                        <p>We support sustainable farming practices</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Speed</h3>
+                        <p>Lightning-fast delivery in 10-15 minutes</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Contact Us Page -->
+    <div id="contact" class="page hidden">
+        <div class="container">
+            <div class="page-hero">
+                <h1>Contact Us</h1>
+                <p>Get in touch with our team</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-form-section">
+                    <h2>Send us a Message</h2>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" name="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea name="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 Fresh Street, Vegetable District<br>Green City, GC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-VEGI</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>hello@slicezee.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Hours</h3>
+                            <p>24/7 Delivery Available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Page -->
+    <div id="cart" class="page hidden">
+        <div class="container">
+            <h1>Shopping Cart</h1>
+            <div class="cart-content">
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be populated by JavaScript -->
+                </div>
+                <div class="cart-summary" id="cartSummary">
+                    <!-- Cart summary will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="empty-cart hidden" id="emptyCart">
+                <i class="fas fa-shopping-cart"></i>
+                <h2>Your cart is empty</h2>
+                <p>Add some fresh vegetables to get started!</p>
+                <button onclick="showPage('shop')" class="btn btn--primary">Start Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Page -->
+    <div id="account" class="page hidden">
+        <div class="container">
+            <h1>My Account</h1>
+            <div class="account-content">
+                <div class="account-sidebar">
+                    <div class="profile-info">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>John Doe</h3>
+                        <p>john.doe@email.com</p>
+                    </div>
+                    <nav class="account-nav">
+                        <a href="#" onclick="showAccountSection('profile')" class="account-nav-link active">Profile</a>
+                        <a href="#" onclick="showAccountSection('orders')" class="account-nav-link">Order History</a>
+                        <a href="#" onclick="showAccountSection('addresses')" class="account-nav-link">Addresses</a>
+                        <a href="#" onclick="showAccountSection('favorites')" class="account-nav-link">Favorites</a>
+                    </nav>
+                </div>
+                
+                <div class="account-main">
+                    <div id="profile-section" class="account-section active">
+                        <h2>Profile Information</h2>
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" value="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" value="john.doe@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" value="+1 (555) 123-4567">
+                            </div>
+                            <button type="submit" class="btn btn--primary">Update Profile</button>
+                        </form>
+                    </div>
+                    
+                    <div id="orders-section" class="account-section hidden">
+                        <h2>Order History</h2>
+                        <div class="orders-list">
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <h3>Order #12345</h3>
+                                    <p>Delivered on Jan 15, 2025</p>
+                                    <p>Items: Fresh Tomatoes, Spinach, Carrots</p>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status status--success">Delivered</span>
+                                    <span class="order-total">$12.47</span>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <h3>Order #12344</h3>
+                                    <p>Delivered on Jan 12, 2025</p>
+                                    <p>Items: Bell Peppers, Onions, Broccoli</p>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status status--success">Delivered</span>
+                                    <span class="order-total">$15.95</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="addresses-section" class="account-section hidden">
+                        <h2>Delivery Addresses</h2>
+                        <div class="addresses-list">
+                            <div class="address-item">
+                                <h3>Home</h3>
+                                <p>123 Main Street, Apt 4B<br>New York, NY 10001</p>
+                                <div class="address-actions">
+                                    <button class="btn btn--outline btn--sm">Edit</button>
+                                    <button class="btn btn--outline btn--sm">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn--primary">Add New Address</button>
+                    </div>
+                    
+                    <div id="favorites-section" class="account-section hidden">
+                        <h2>Favorite Products</h2>
+                        <div class="favorites-grid" id="favoritesGrid">
+                            <!-- Favorite products will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🥬 Slicezee</h3>
+                    <p>Fresh vegetables delivered in minutes</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('shop')">Shop</a></li>
+                        <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-VEGI</li>
+                        <li><i class="fas fa-envelope"></i> hello@slicezee.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Fresh Street</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Slicezee. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
